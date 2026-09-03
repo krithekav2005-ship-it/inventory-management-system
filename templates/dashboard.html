@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <div class="nav">
+
+            <a href="/dashboard">Dashboard</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/stock">Stock</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/stock-history">History</a>
+            <a href="/reports">Reports</a>
+<a href="/logout" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
+        </div>
+
+        <h2>Dashboard</h2>
+
+        <p style="text-align: center;">
+            Welcome, <strong>{{ session["username"] }}</strong>
+        </p>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>Total Products</h3>
+                <p>{{ total_products }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Stock</h3>
+                <p>{{ total_stock }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Low Stock Products</h3>
+                <p>{{ low_stock_products }}</p>
+            </div>
+
+        </div>
+
+        <h2>Low Stock Alert</h2>
+
+        <table>
+
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Current Stock</th>
+            </tr>
+
+            {% for product in low_stock_list %}
+
+            <tr>
+
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

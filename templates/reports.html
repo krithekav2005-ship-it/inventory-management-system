@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports - Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <div class="nav">
+
+            <a href="/dashboard">Dashboard</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/stock">Stock</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/stock-history">History</a>
+            <a href="/reports">Reports</a>
+
+            <a href="/logout"
+               onclick="return confirm('Are you sure you want to logout?');">
+                Logout
+            </a>
+
+        </div>
+
+        <h2>Reports</h2>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>Total Products</h3>
+                <p>{{ total_products }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Stock</h3>
+                <p>{{ total_stock }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Stock In</h3>
+                <p>{{ total_stock_in }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Stock Out</h3>
+                <p>{{ total_stock_out }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Low Stock</h3>
+                <p>{{ low_stock_products }}</p>
+            </div>
+
+        </div>
+
+        <h2>Product Report</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Current Stock</th>
+                <th>Price</th>
+            </tr>
+
+            {% for product in products %}
+
+            <tr>
+
+                <td>{{ product.id }}</td>
+
+                <td>{{ product.name }}</td>
+
+                <td>{{ product.quantity }}</td>
+
+                <td>₹{{ product.price }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

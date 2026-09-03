@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suppliers - Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <div class="nav">
+
+            <a href="/dashboard">Dashboard</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/stock">Stock</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/stock-history">History</a>
+            <a href="/reports">Reports</a>
+
+            <a href="/logout"
+               onclick="return confirm('Are you sure you want to logout?');">
+                Logout
+            </a>
+
+        </div>
+
+        <h2>Suppliers</h2>
+
+        <form method="POST">
+
+            <label for="name">
+                Supplier Name:
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter supplier name"
+                required
+            >
+
+            <label for="contact">
+                Contact:
+            </label>
+
+            <input
+                type="text"
+                name="contact"
+                id="contact"
+                placeholder="Enter contact number"
+                required
+            >
+
+            <label for="email">
+                Email:
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter email"
+                required
+            >
+
+            <button type="submit">
+                Add Supplier
+            </button>
+
+        </form>
+
+        <h2>Supplier List</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Supplier Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+            </tr>
+
+            {% for supplier in suppliers %}
+
+            <tr>
+
+                <td>{{ supplier.id }}</td>
+
+                <td>{{ supplier.name }}</td>
+
+                <td>{{ supplier.contact }}</td>
+
+                <td>{{ supplier.email }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

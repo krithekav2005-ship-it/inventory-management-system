@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stock History - Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <div class="nav">
+
+            <a href="/dashboard">Dashboard</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/stock">Stock</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/stock-history">History</a>
+            <a href="/reports">Reports</a>
+
+            <a href="/logout"
+               onclick="return confirm('Are you sure you want to logout?');">
+                Logout
+            </a>
+
+        </div>
+
+        <h2>Stock History</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Transaction Type</th>
+                <th>Quantity</th>
+            </tr>
+
+            {% for transaction in transactions %}
+
+            <tr>
+
+                <td>{{ transaction.id }}</td>
+
+                <td>{{ transaction.product.name }}</td>
+
+                <td>{{ transaction.transaction_type }}</td>
+
+                <td>{{ transaction.quantity }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

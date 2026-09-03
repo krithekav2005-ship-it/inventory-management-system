@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stock Management - Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <div class="nav">
+
+            <a href="/dashboard">Dashboard</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/stock">Stock</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/stock-history">History</a>
+            <a href="/reports">Reports</a>
+
+            <a href="/logout"
+               onclick="return confirm('Are you sure you want to logout?');">
+                Logout
+            </a>
+
+        </div>
+
+        <h2>Stock Management</h2>
+
+        {% if error %}
+
+        <p style="
+            text-align: center;
+            color: #dc2626;
+            font-weight: bold;
+            margin-bottom: 15px;
+        ">
+            {{ error }}
+        </p>
+
+        {% endif %}
+
+        <form method="POST">
+
+            <label for="product_id">
+                Select Product:
+            </label>
+
+            <select name="product_id" id="product_id" required>
+
+                <option value="">
+                    -- Select Product --
+                </option>
+
+                {% for product in products %}
+
+                <option value="{{ product.id }}">
+                    {{ product.name }} (Current Stock: {{ product.quantity }})
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <label for="transaction_type">
+                Transaction Type:
+            </label>
+
+            <select
+                name="transaction_type"
+                id="transaction_type"
+                required
+            >
+
+                <option value="">
+                    -- Select Type --
+                </option>
+
+                <option value="IN">
+                    Stock In
+                </option>
+
+                <option value="OUT">
+                    Stock Out
+                </option>
+
+            </select>
+
+            <label for="quantity">
+                Quantity:
+            </label>
+
+            <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                min="1"
+                placeholder="Enter quantity"
+                required
+            >
+
+            <button type="submit">
+                Update Stock
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

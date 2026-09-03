@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory - Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <div class="nav">
+
+            <a href="/dashboard">Dashboard</a>
+            <a href="/inventory">Inventory</a>
+            <a href="/stock">Stock</a>
+            <a href="/suppliers">Suppliers</a>
+            <a href="/stock-history">History</a>
+            <a href="/reports">Reports</a>
+
+            <a href="/logout"
+               onclick="return confirm('Are you sure you want to logout?');">
+                Logout
+            </a>
+
+        </div>
+
+        <h2>Inventory</h2>
+
+        <!-- Search -->
+
+        <form method="GET" action="/inventory">
+
+            <label for="search">
+                Search Product:
+            </label>
+
+            <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Enter product name"
+                value="{{ search }}"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        <div class="buttons">
+
+            <a href="/add-product" class="button">
+                Add Product
+            </a>
+
+        </div>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for product in products %}
+
+            <tr>
+
+                <td>{{ product.id }}</td>
+
+                <td>{{ product.name }}</td>
+
+                <td>{{ product.quantity }}</td>
+
+                <td>₹{{ product.price }}</td>
+
+                <td>
+
+                    <a href="/edit-product/{{ product.id }}">
+                        Edit
+                    </a>
+
+                    |
+
+                    <a href="/delete-product/{{ product.id }}"
+                       onclick="return confirm('Are you sure you want to delete this product?');">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% if not products %}
+
+        <p style="text-align: center; margin-top: 25px;">
+            No products found.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
