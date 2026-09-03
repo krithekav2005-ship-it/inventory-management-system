@@ -2,16 +2,12 @@
 
 A web-based Inventory Management System built using Python Flask, SQLite, HTML, and CSS.
 
-## 📌 Project Overview
+This project helps manage products, stock, suppliers, and inventory transactions through a simple and user-friendly web interface.
 
-This project is designed to help businesses manage products, inventory, suppliers, and stock transactions through a simple web interface.
-
-Users can securely log in and manage inventory from a centralized dashboard.
-
-## ✨ Features
+## Features
 
 - User Login and Logout
-- Password Hashing
+- Secure Password Hashing
 - Dashboard
 - Product Management
 - Add Products
@@ -21,14 +17,17 @@ Users can securely log in and manage inventory from a centralized dashboard.
 - Stock In
 - Stock Out
 - Stock Validation
-- Supplier Management
 - Stock History
-- Reports
+- Supplier Management
+- Low Stock Alerts
+- Inventory Reports
+- Responsive User Interface
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Python
 - Flask
+- Flask-SQLAlchemy
 - SQLite
 - HTML5
 - CSS3
@@ -36,10 +35,10 @@ Users can securely log in and manage inventory from a centralized dashboard.
 - Git
 - GitHub
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
-inventorymanagementsys/
+InventoryManagementSystem/
 │
 ├── static/
 │   └── style.css
