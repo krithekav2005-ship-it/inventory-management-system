@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import os
 from werkzeug.security import check_password_hash
 from models import db, User, Product, StockTransaction, Supplier
 
@@ -6,8 +7,10 @@ app = Flask(__name__)
 
 app.secret_key = "inventory-secret-key"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///inventory.db"
-
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    "DATABASE_URL",
+    "sqlite:///inventory.db"
+)
 db.init_app(app)
 
 with app.app_context():
